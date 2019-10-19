@@ -11,8 +11,11 @@ bootState = {
     game.load.image('start', 'assets/start.png');
     game.load.image('map', 'assets/map.png');
 
-    game.load.image('pawn', 'assets/pawn.png');
+    game.load.image('map-pawn', 'assets/map-pawn.png');
     game.load.image('scene-chess', 'assets/scene-chess.png');
+
+    game.load.image('map-helico', 'assets/map-helicopter.png');
+    game.load.image('scene-helico', 'assets/scene-helicopter.png');
 
     game.load.image('map-freesea', 'assets/map-freesea.png');
     game.load.image('scene-freesea', 'assets/scene-freesea.png');
@@ -102,12 +105,17 @@ playState = {
 
     this.control.events.onInputDown.add(()=>{game.state.start('control')}, this);
 
-    this.pawn = game.add.image(750, 470, 'pawn');
+    this.pawn = game.add.image(750, 470, 'map-pawn');
     this.pawn.inputEnabled = true;
     this.pawn.input.useHandCursor = true;
 
     this.pawn.events.onInputDown.add(()=>{game.state.start('chess')}, this);
 
+    this.helico = game.add.image(670, 580, 'map-helico');
+    this.helico.inputEnabled = true;
+    this.helico.input.useHandCursor = true;
+
+    this.helico.events.onInputDown.add(()=>{game.state.start('helico')}, this);
     // map will accept inputs
     this.scrollingMap.inputEnabled = true;
     // map can be dragged
@@ -210,6 +218,9 @@ playState = {
 
     this.pawn.x = this.scrollingMap.savedPosition.x + 750;
     this.pawn.y = this.scrollingMap.savedPosition.y + 470;
+
+    this.helico.x = this.scrollingMap.savedPosition.x + 670;
+    this.helico.y = this.scrollingMap.savedPosition.y + 580;
   },
 
   showImage: function(){
@@ -290,6 +301,16 @@ chessState = {
   }
 }
 
+helicoState = {
+  create: function(){
+    game.add.image(0, 0, 'scene-helico');
+    this.bicycle = game.add.image(20, 20, 'menu-bicycle');
+    this.bicycle.inputEnabled = true;
+    this.bicycle.input.useHandCursor = true;
+    this.bicycle.events.onInputDown.add(()=>{game.state.start('play')}, this);
+  }
+}
+
 game.state.add('boot', bootState)
 game.state.add('menu', menuState)
 game.state.add('play', playState)
@@ -299,4 +320,5 @@ game.state.add('shop', shopState)
 game.state.add('two', twoState)
 game.state.add('control', controlState)
 game.state.add('chess', chessState)
+game.state.add('helico', helicoState)
 game.state.start('boot');
