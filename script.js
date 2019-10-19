@@ -8,6 +8,7 @@ var friction = 0.99;
 bootState = {
   preload: function() {
     game.load.image('six', 'assets/six.png');
+    game.load.image('start', 'assets/start.png');
     game.load.image('map', 'assets/map.png');
 
     game.load.image('map-freesea', 'assets/map-freesea.png');
@@ -40,9 +41,16 @@ bootState = {
 menuState = {
   create: function() {
     this.menu = game.add.image( 0,0, 'six');
-    this.menu.inputEnabled = true;
-    this.menu.input.useHandCursor = true;
-    this.menu.events.onInputDown.add(()=>{game.state.start('play')}, this);
+
+
+    var start = game.add.button(400, 450, 'start', this.start);
+    start.anchor.setTo(0.5, 0.5);
+    start.alpha = 0;
+    var tween = game.add.tween(start).to( { alpha: 1 }, 500, "Linear", true, 0, -1);
+    tween.yoyo(true, 500);
+  },
+  start: function(){
+    game.state.start('play');
   }
 },
 
