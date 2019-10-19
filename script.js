@@ -11,8 +11,11 @@ bootState = {
     game.load.image('start', 'assets/start.png');
     game.load.image('map', 'assets/map.png');
 
+    game.load.image('pawn', 'assets/pawn.png');
+    game.load.image('scene-chess', 'assets/scene-chess.png');
+
     game.load.image('map-freesea', 'assets/map-freesea.png');
-    game.load.image('scene-freesea', 'assets/scene-freesea.jpg');
+    game.load.image('scene-freesea', 'assets/scene-freesea.png');
 
     game.load.image('map-ship', 'assets/map-ship.png');
     game.load.image('scene-ship', 'assets/scene-ship.png');
@@ -98,6 +101,12 @@ playState = {
     this.control.input.useHandCursor = true;
 
     this.control.events.onInputDown.add(()=>{game.state.start('control')}, this);
+
+    this.pawn = game.add.image(750, 470, 'pawn');
+    this.pawn.inputEnabled = true;
+    this.pawn.input.useHandCursor = true;
+
+    this.pawn.events.onInputDown.add(()=>{game.state.start('chess')}, this);
 
     // map will accept inputs
     this.scrollingMap.inputEnabled = true;
@@ -198,6 +207,9 @@ playState = {
 
     this.control.x = this.scrollingMap.savedPosition.x + 518;
     this.control.y = this.scrollingMap.savedPosition.y + 432;
+
+    this.pawn.x = this.scrollingMap.savedPosition.x + 750;
+    this.pawn.y = this.scrollingMap.savedPosition.y + 470;
   },
 
   showImage: function(){
@@ -268,6 +280,16 @@ controlState = {
   }
 }
 
+chessState = {
+  create: function(){
+    game.add.image(0, 0, 'scene-chess');
+    this.bicycle = game.add.image(20, 20, 'menu-bicycle');
+    this.bicycle.inputEnabled = true;
+    this.bicycle.input.useHandCursor = true;
+    this.bicycle.events.onInputDown.add(()=>{game.state.start('play')}, this);
+  }
+}
+
 game.state.add('boot', bootState)
 game.state.add('menu', menuState)
 game.state.add('play', playState)
@@ -276,4 +298,5 @@ game.state.add('ship', shipState)
 game.state.add('shop', shopState)
 game.state.add('two', twoState)
 game.state.add('control', controlState)
+game.state.add('chess', chessState)
 game.state.start('boot');
