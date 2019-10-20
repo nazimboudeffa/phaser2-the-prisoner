@@ -44,6 +44,9 @@ bootState = {
     game.load.image('map-hospital', 'assets/map/map-hospital.png');
     game.load.image('scene-hospital', 'assets/scenes/scene-hospital.png');
 
+    game.load.image('map-cafe', 'assets/map/map-cafe.png');
+    game.load.image('scene-cafe', 'assets/scenes/scene-cafe.png');
+
     game.load.image('menu-bicycle', 'assets/menu/menu-bicycle.png');
 
     //game.load.video('rover', 'assets/videos/rover.mp4');
@@ -156,6 +159,13 @@ playState = {
     this.hospital.input.useHandCursor = true;
 
     this.hospital.events.onInputDown.add(()=>{game.state.start('hospital')}, this);
+
+    this.cafe = game.add.image(813, 293, 'map-cafe');
+    this.cafe.tint = 0x00ff00;
+    this.cafe.inputEnabled = true;
+    this.cafe.input.useHandCursor = true;
+
+    this.cafe.events.onInputDown.add(()=>{game.state.start('cafe')}, this);
 
     // map will accept inputs
     this.scrollingMap.inputEnabled = true;
@@ -274,6 +284,9 @@ playState = {
 
     this.hospital.x = this.scrollingMap.savedPosition.x + 1325;
     this.hospital.y = this.scrollingMap.savedPosition.y + 447;
+
+    this.cafe.x = this.scrollingMap.savedPosition.x + 813;
+    this.cafe.y = this.scrollingMap.savedPosition.y + 293;
   },
 
   showImage: function(){
@@ -404,6 +417,16 @@ hospitalState = {
   }
 }
 
+cafeState = {
+  create: function(){
+    game.add.image(0, 0, 'scene-cafe');
+    this.bicycle = game.add.image(20, 20, 'menu-bicycle');
+    this.bicycle.inputEnabled = true;
+    this.bicycle.input.useHandCursor = true;
+    this.bicycle.events.onInputDown.add(()=>{game.state.start('play')}, this);
+  }
+}
+
 game.state.add('boot', bootState)
 game.state.add('menu', menuState)
 game.state.add('play', playState)
@@ -416,6 +439,7 @@ game.state.add('labour', labourState)
 game.state.add('sea', seaState)
 game.state.add('beach', beachState)
 game.state.add('hospital', hospitalState)
+game.state.add('cafe', cafeState)
 game.state.add('chess', chessState)
 game.state.add('helico', helicoState)
 game.state.start('boot');
