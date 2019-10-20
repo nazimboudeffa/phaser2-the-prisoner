@@ -7,32 +7,32 @@ var friction = 0.99;
 
 bootState = {
   preload: function() {
-    game.load.image('six', 'assets/six.png');
-    game.load.image('start', 'assets/start.png');
-    game.load.image('map', 'assets/map.png');
+    game.load.image('six', 'assets/menu/six.png');
+    game.load.image('start', 'assets/menu/start.png');
+    game.load.image('map', 'assets/map/map.png');
 
-    game.load.image('map-pawn', 'assets/map-pawn.png');
-    game.load.image('scene-chess', 'assets/scene-chess.png');
+    game.load.image('map-pawn', 'assets/map/map-pawn.png');
+    game.load.image('scene-chess', 'assets/scenes/scene-chess.png');
 
-    game.load.image('map-helico', 'assets/map-helicopter.png');
-    game.load.image('scene-helico', 'assets/scene-helicopter.png');
+    game.load.image('map-helico', 'assets/map/map-helicopter.png');
+    game.load.image('scene-helico', 'assets/scenes/scene-helicopter.png');
 
-    game.load.image('map-freesea', 'assets/map-freesea.png');
-    game.load.image('scene-freesea', 'assets/scene-freesea.png');
+    game.load.image('map-freesea', 'assets/map/map-freesea.png');
+    game.load.image('scene-freesea', 'assets/scenes/scene-freesea.png');
 
-    game.load.image('map-ship', 'assets/map-ship.png');
-    game.load.image('scene-ship', 'assets/scene-ship.png');
+    game.load.image('map-ship', 'assets/map/map-ship.png');
+    game.load.image('scene-ship', 'assets/scenes/scene-ship.png');
 
-    game.load.image('map-shop', 'assets/map-shop.png');
-    game.load.image('scene-shop', 'assets/scene-shop.png');
+    game.load.image('map-shop', 'assets/map/map-shop.png');
+    game.load.image('scene-shop', 'assets/scenes/scene-shop.png');
 
-    game.load.image('map-two', 'assets/map-two.png');
-    game.load.image('scene-two', 'assets/scene-two.png');
+    game.load.image('map-two', 'assets/map/map-two.png');
+    game.load.image('scene-two', 'assets/scenes/scene-two.png');
 
-    game.load.image('map-control', 'assets/map-control.png');
-    game.load.image('scene-control', 'assets/scene-control.png');
+    game.load.image('map-control', 'assets/map/map-control.png');
+    game.load.image('scene-control', 'assets/scenes/scene-control.png');
 
-    game.load.image('menu-bicycle', 'assets/menu-bicycle.png');
+    game.load.image('menu-bicycle', 'assets/menu/menu-bicycle.png');
 
     //game.load.video('rover', 'assets/videos/rover.mp4');
   },
