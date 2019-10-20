@@ -47,6 +47,9 @@ bootState = {
     game.load.image('map-cafe', 'assets/map/map-cafe.png');
     game.load.image('scene-cafe', 'assets/scenes/scene-cafe.png');
 
+    game.load.image('map-private', 'assets/map/map-six-private.png');
+    game.load.image('scene-private', 'assets/scenes/scene-six-private.png');
+
     game.load.image('menu-bicycle', 'assets/menu/menu-bicycle.png');
 
     //game.load.video('rover', 'assets/videos/rover.mp4');
@@ -157,6 +160,12 @@ playState = {
     this.cafe.inputEnabled = true;
     this.cafe.input.useHandCursor = true;
     this.cafe.events.onInputDown.add(()=>{game.state.start('cafe')}, this);
+
+    this.private = game.add.image(730, 531, 'map-private');
+    this.private.tint = 0x0000ff;
+    this.private.inputEnabled = true;
+    this.private.input.useHandCursor = true;
+    this.private.events.onInputDown.add(()=>{game.state.start('private')}, this);
 
     // map will accept inputs
     this.scrollingMap.inputEnabled = true;
@@ -278,6 +287,9 @@ playState = {
 
     this.cafe.x = this.scrollingMap.savedPosition.x + 813;
     this.cafe.y = this.scrollingMap.savedPosition.y + 293;
+
+    this.private.x = this.scrollingMap.savedPosition.x + 730;
+    this.private.y = this.scrollingMap.savedPosition.y + 531;
   },
 
   showImage: function(){
@@ -418,6 +430,16 @@ cafeState = {
   }
 }
 
+privateState = {
+  create: function(){
+    game.add.image(0, 0, 'scene-private');
+    this.bicycle = game.add.image(20, 20, 'menu-bicycle');
+    this.bicycle.inputEnabled = true;
+    this.bicycle.input.useHandCursor = true;
+    this.bicycle.events.onInputDown.add(()=>{game.state.start('play')}, this);
+  }
+}
+
 game.state.add('boot', bootState)
 game.state.add('menu', menuState)
 game.state.add('play', playState)
@@ -431,6 +453,7 @@ game.state.add('sea', seaState)
 game.state.add('beach', beachState)
 game.state.add('hospital', hospitalState)
 game.state.add('cafe', cafeState)
+game.state.add('private', privateState)
 game.state.add('chess', chessState)
 game.state.add('helico', helicoState)
 game.state.start('boot');
