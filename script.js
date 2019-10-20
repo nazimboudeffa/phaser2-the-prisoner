@@ -27,10 +27,22 @@ bootState = {
     game.load.image('scene-shop', 'assets/scenes/scene-shop.png');
 
     game.load.image('map-two', 'assets/map/map-two.png');
-    game.load.image('scene-two', 'assets/scenes/scene-two.png');
+    game.load.image('scene-two', 'assets/scenes/scene-dome.png');
 
     game.load.image('map-control', 'assets/map/map-control.png');
-    game.load.image('scene-control', 'assets/scenes/scene-control.png');
+    game.load.image('scene-control', 'assets/scenes/scene-town-hall.png');
+
+    game.load.image('map-labour-exchange', 'assets/map/map-labour-exchange.png');
+    game.load.image('scene-labour-exchange', 'assets/scenes/scene-labour-exchange.png');
+
+    game.load.image('map-sea', 'assets/map/map-sea.png');
+    game.load.image('scene-sea', 'assets/scenes/scene-sea.png');
+
+    game.load.image('map-beach', 'assets/map/map-beach.png');
+    game.load.image('scene-beach', 'assets/scenes/scene-beach.png');
+
+    game.load.image('map-hospital', 'assets/map/map-hospital.png');
+    game.load.image('scene-hospital', 'assets/scenes/scene-hospital.png');
 
     game.load.image('menu-bicycle', 'assets/menu/menu-bicycle.png');
 
@@ -98,12 +110,19 @@ playState = {
 
     this.two.events.onInputDown.add(()=>{game.state.start('two')}, this);
 
-    this.control = game.add.image(518, 432, 'map-control');
+    this.control = game.add.image(986, 251, 'map-control');
     this.control.tint = 0x00ff00;
     this.control.inputEnabled = true;
     this.control.input.useHandCursor = true;
 
     this.control.events.onInputDown.add(()=>{game.state.start('control')}, this);
+
+    this.labour = game.add.image(518, 432, 'map-labour-exchange');
+    this.labour.tint = 0x00ff00;
+    this.labour.inputEnabled = true;
+    this.labour.input.useHandCursor = true;
+
+    this.labour.events.onInputDown.add(()=>{game.state.start('labour')}, this);
 
     this.pawn = game.add.image(750, 470, 'map-pawn');
     this.pawn.inputEnabled = true;
@@ -116,6 +135,28 @@ playState = {
     this.helico.input.useHandCursor = true;
 
     this.helico.events.onInputDown.add(()=>{game.state.start('helico')}, this);
+
+    this.sea = game.add.image(782, 771, 'map-sea');
+    this.sea.tint = 0xff0000;
+    this.sea.inputEnabled = true;
+    this.sea.input.useHandCursor = true;
+
+    this.sea.events.onInputDown.add(()=>{game.state.start('sea')}, this);
+
+    this.beach = game.add.image(505, 818, 'map-beach');
+    this.beach.tint = 0xff0000;
+    this.beach.inputEnabled = true;
+    this.beach.input.useHandCursor = true;
+
+    this.beach.events.onInputDown.add(()=>{game.state.start('beach')}, this);
+
+    this.hospital = game.add.image(1325, 447, 'map-hospital');
+    this.hospital.tint = 0x00ff00;
+    this.hospital.inputEnabled = true;
+    this.hospital.input.useHandCursor = true;
+
+    this.hospital.events.onInputDown.add(()=>{game.state.start('hospital')}, this);
+
     // map will accept inputs
     this.scrollingMap.inputEnabled = true;
     // map can be dragged
@@ -216,11 +257,23 @@ playState = {
     this.control.x = this.scrollingMap.savedPosition.x + 518;
     this.control.y = this.scrollingMap.savedPosition.y + 432;
 
+    this.labour.x = this.scrollingMap.savedPosition.x + 986;
+    this.labour.y = this.scrollingMap.savedPosition.y + 251;
+
     this.pawn.x = this.scrollingMap.savedPosition.x + 750;
     this.pawn.y = this.scrollingMap.savedPosition.y + 470;
 
     this.helico.x = this.scrollingMap.savedPosition.x + 670;
     this.helico.y = this.scrollingMap.savedPosition.y + 580;
+
+    this.sea.x = this.scrollingMap.savedPosition.x + 782;
+    this.sea.y = this.scrollingMap.savedPosition.y + 771;
+
+    this.beach.x = this.scrollingMap.savedPosition.x + 505;
+    this.beach.y = this.scrollingMap.savedPosition.y + 818;
+
+    this.hospital.x = this.scrollingMap.savedPosition.x + 1325;
+    this.hospital.y = this.scrollingMap.savedPosition.y + 447;
   },
 
   showImage: function(){
@@ -311,6 +364,46 @@ helicoState = {
   }
 }
 
+labourState = {
+  create: function(){
+    game.add.image(0, 0, 'scene-labour-exchange');
+    this.bicycle = game.add.image(20, 20, 'menu-bicycle');
+    this.bicycle.inputEnabled = true;
+    this.bicycle.input.useHandCursor = true;
+    this.bicycle.events.onInputDown.add(()=>{game.state.start('play')}, this);
+  }
+}
+
+seaState = {
+  create: function(){
+    game.add.image(0, 0, 'scene-sea');
+    this.bicycle = game.add.image(20, 20, 'menu-bicycle');
+    this.bicycle.inputEnabled = true;
+    this.bicycle.input.useHandCursor = true;
+    this.bicycle.events.onInputDown.add(()=>{game.state.start('play')}, this);
+  }
+}
+
+beachState = {
+  create: function(){
+    game.add.image(0, 0, 'scene-beach');
+    this.bicycle = game.add.image(20, 20, 'menu-bicycle');
+    this.bicycle.inputEnabled = true;
+    this.bicycle.input.useHandCursor = true;
+    this.bicycle.events.onInputDown.add(()=>{game.state.start('play')}, this);
+  }
+}
+
+hospitalState = {
+  create: function(){
+    game.add.image(0, 0, 'scene-hospital');
+    this.bicycle = game.add.image(20, 20, 'menu-bicycle');
+    this.bicycle.inputEnabled = true;
+    this.bicycle.input.useHandCursor = true;
+    this.bicycle.events.onInputDown.add(()=>{game.state.start('play')}, this);
+  }
+}
+
 game.state.add('boot', bootState)
 game.state.add('menu', menuState)
 game.state.add('play', playState)
@@ -319,6 +412,10 @@ game.state.add('ship', shipState)
 game.state.add('shop', shopState)
 game.state.add('two', twoState)
 game.state.add('control', controlState)
+game.state.add('labour', labourState)
+game.state.add('sea', seaState)
+game.state.add('beach', beachState)
+game.state.add('hospital', hospitalState)
 game.state.add('chess', chessState)
 game.state.add('helico', helicoState)
 game.state.start('boot');
