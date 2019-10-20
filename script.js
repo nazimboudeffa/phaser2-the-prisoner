@@ -96,75 +96,66 @@ playState = {
     this.ship.tint = 0x00ff00;
     this.ship.inputEnabled = true;
     this.ship.input.useHandCursor = true;
-
     this.ship.events.onInputDown.add(()=>{game.state.start('ship')}, this);
 
     this.shop = game.add.image(562, 298, 'map-shop');
     this.shop.tint = 0x00ff00;
     this.shop.inputEnabled = true;
     this.shop.input.useHandCursor = true;
-
     this.shop.events.onInputDown.add(()=>{game.state.start('shop')}, this);
 
     this.two = game.add.image(954, 444, 'map-two');
     this.two.tint = 0x00ff00;
     this.two.inputEnabled = true;
     this.two.input.useHandCursor = true;
-
     this.two.events.onInputDown.add(()=>{game.state.start('two')}, this);
 
     this.control = game.add.image(986, 251, 'map-control');
     this.control.tint = 0x00ff00;
     this.control.inputEnabled = true;
     this.control.input.useHandCursor = true;
-
     this.control.events.onInputDown.add(()=>{game.state.start('control')}, this);
 
     this.labour = game.add.image(518, 432, 'map-labour-exchange');
     this.labour.tint = 0x00ff00;
     this.labour.inputEnabled = true;
     this.labour.input.useHandCursor = true;
-
     this.labour.events.onInputDown.add(()=>{game.state.start('labour')}, this);
 
     this.pawn = game.add.image(750, 470, 'map-pawn');
+    this.pawn.tint = 0x00ff00;
     this.pawn.inputEnabled = true;
     this.pawn.input.useHandCursor = true;
-
     this.pawn.events.onInputDown.add(()=>{game.state.start('chess')}, this);
 
     this.helico = game.add.image(670, 580, 'map-helico');
+    this.helico.tint = 0xff0000;
     this.helico.inputEnabled = true;
     this.helico.input.useHandCursor = true;
-
     this.helico.events.onInputDown.add(()=>{game.state.start('helico')}, this);
 
     this.sea = game.add.image(782, 771, 'map-sea');
     this.sea.tint = 0xff0000;
     this.sea.inputEnabled = true;
     this.sea.input.useHandCursor = true;
-
     this.sea.events.onInputDown.add(()=>{game.state.start('sea')}, this);
 
     this.beach = game.add.image(505, 818, 'map-beach');
     this.beach.tint = 0xff0000;
     this.beach.inputEnabled = true;
     this.beach.input.useHandCursor = true;
-
     this.beach.events.onInputDown.add(()=>{game.state.start('beach')}, this);
 
     this.hospital = game.add.image(1325, 447, 'map-hospital');
     this.hospital.tint = 0x00ff00;
     this.hospital.inputEnabled = true;
     this.hospital.input.useHandCursor = true;
-
     this.hospital.events.onInputDown.add(()=>{game.state.start('hospital')}, this);
 
     this.cafe = game.add.image(813, 293, 'map-cafe');
     this.cafe.tint = 0x00ff00;
     this.cafe.inputEnabled = true;
     this.cafe.input.useHandCursor = true;
-
     this.cafe.events.onInputDown.add(()=>{game.state.start('cafe')}, this);
 
     // map will accept inputs
