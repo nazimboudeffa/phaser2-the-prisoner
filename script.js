@@ -50,6 +50,9 @@ bootState = {
     game.load.image('map-private', 'assets/map/map-six-private.png');
     game.load.image('scene-private', 'assets/scenes/scene-six-private.png');
 
+    game.load.image('map-phone', 'assets/map/map-phone.png');
+    game.load.image('scene-phone', 'assets/scenes/scene-phone.png');
+
     game.load.image('menu-bicycle', 'assets/menu/menu-bicycle.png');
 
     //game.load.video('rover', 'assets/videos/rover.mp4');
@@ -166,6 +169,12 @@ playState = {
     this.private.inputEnabled = true;
     this.private.input.useHandCursor = true;
     this.private.events.onInputDown.add(()=>{game.state.start('private')}, this);
+
+    this.phone = game.add.image(511, 272, 'map-phone');
+    this.phone.tint = 0x00ff00;
+    this.phone.inputEnabled = true;
+    this.phone.input.useHandCursor = true;
+    this.phone.events.onInputDown.add(()=>{game.state.start('phone')}, this);
 
     // map will accept inputs
     this.scrollingMap.inputEnabled = true;
@@ -290,6 +299,9 @@ playState = {
 
     this.private.x = this.scrollingMap.savedPosition.x + 730;
     this.private.y = this.scrollingMap.savedPosition.y + 531;
+
+    this.phone.x = this.scrollingMap.savedPosition.x + 511;
+    this.phone.y = this.scrollingMap.savedPosition.y + 272;
   },
 
   showImage: function(){
@@ -440,6 +452,16 @@ privateState = {
   }
 }
 
+phoneState = {
+  create: function(){
+    game.add.image(0, 0, 'scene-phone');
+    this.bicycle = game.add.image(20, 20, 'menu-bicycle');
+    this.bicycle.inputEnabled = true;
+    this.bicycle.input.useHandCursor = true;
+    this.bicycle.events.onInputDown.add(()=>{game.state.start('play')}, this);
+  }
+}
+
 game.state.add('boot', bootState)
 game.state.add('menu', menuState)
 game.state.add('play', playState)
@@ -456,4 +478,5 @@ game.state.add('cafe', cafeState)
 game.state.add('private', privateState)
 game.state.add('chess', chessState)
 game.state.add('helico', helicoState)
+game.state.add('phone', phoneState)
 game.state.start('boot');
