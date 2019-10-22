@@ -11,6 +11,8 @@ bootState = {
     game.load.image('start', 'assets/menu/start.png');
     game.load.image('map', 'assets/map/map.png');
 
+    game.load.image('eye', 'assets/menu/eye.png');
+
     game.load.image('map-pawn', 'assets/map/map-pawn.png');
     game.load.image('scene-chess', 'assets/scenes/scene-chess.png');
 
@@ -55,7 +57,7 @@ bootState = {
 
     game.load.image('menu-bicycle', 'assets/menu/menu-bicycle.png');
 
-    //game.load.video('rover', 'assets/videos/rover.mp4');
+    game.load.video('rover', 'assets/videos/rover.mp4');
   },
   create: function() {
     game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
@@ -83,6 +85,12 @@ menuState = {
 
 playState = {
   create: function(){
+    if (video == undefined) {
+      //
+    } else if (video.playing){
+      video.stop()
+      video.destroy()
+    }
     // the big map to scroll
     // to be sure to be back to the righ place of the scrolling map we need to test if it's the first call
     if (this.scrollingMap == undefined){
@@ -302,21 +310,6 @@ playState = {
 
     this.phone.x = this.scrollingMap.savedPosition.x + 511;
     this.phone.y = this.scrollingMap.savedPosition.y + 272;
-  },
-
-  showImage: function(){
-    game.add.image('scene-freesea');
-  },
-
-  playSeaRover: function(){
-
-    video = game.add.video('rover');
-
-    video.play(true);
-
-    //  x, y, anchor x, anchor y, scale x, scale y
-    video.addToWorld();
-
   }
 }
 
@@ -405,10 +398,23 @@ labourState = {
 seaState = {
   create: function(){
     game.add.image(0, 0, 'scene-sea');
+
+    this.eye = game.add.image(500,200, 'eye');
+    this.eye.inputEnabled = true;
+    this.eye.input.useHandCursor = true;
+    this.eye.events.onInputDown.add(this.playVideo, this);
+
     this.bicycle = game.add.image(20, 20, 'menu-bicycle');
     this.bicycle.inputEnabled = true;
     this.bicycle.input.useHandCursor = true;
     this.bicycle.events.onInputDown.add(()=>{game.state.start('play')}, this);
+  },
+
+  playVideo: function(){
+    video = game.add.video('rover');
+    video.addToWorld(780, 550, 1, 1, 0.5, 0.5);
+    video.onComplete.add(()=>{game.state.start('sea')})
+    video.play(false);
   }
 }
 
